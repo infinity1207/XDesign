@@ -8,17 +8,17 @@ namespace XDesign
 {
     public class ToolboxItem : ContentControl
     {
-        private Point? dragStartPoint = null;
+        private Point? _dragStartPoint;
 
         static ToolboxItem()
         {
-            FrameworkElement.DefaultStyleKeyProperty.OverrideMetadata(typeof(ToolboxItem), new FrameworkPropertyMetadata(typeof(ToolboxItem)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ToolboxItem), new FrameworkPropertyMetadata(typeof(ToolboxItem)));
         }
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
             base.OnPreviewMouseDown(e);
-            this.dragStartPoint = new Point?(e.GetPosition(this));
+            _dragStartPoint = e.GetPosition(this);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -26,24 +26,21 @@ namespace XDesign
             base.OnMouseMove(e);
             if (e.LeftButton != MouseButtonState.Pressed)
             {
-                this.dragStartPoint = null;
+                _dragStartPoint = null;
             }
 
-            if (this.dragStartPoint.HasValue)
+            if (_dragStartPoint.HasValue)
             {
                 Point position = e.GetPosition(this);
                 if ((SystemParameters.MinimumHorizontalDragDistance <=
-                    Math.Abs((double)(position.X - this.dragStartPoint.Value.X))) ||
+                    Math.Abs(position.X - _dragStartPoint.Value.X)) ||
                     (SystemParameters.MinimumVerticalDragDistance <=
-                    Math.Abs((double)(position.Y - this.dragStartPoint.Value.Y))))
+                    Math.Abs(position.Y - _dragStartPoint.Value.Y)))
                 {
-                    string xamlString = XamlWriter.Save(this.Content);
+                    string xamlString = XamlWriter.Save(Content);
                     DataObject dataObject = new DataObject("DESIGNER_ITEM", xamlString);
 
-                    if (dataObject != null)
-                    {
-                        DragDrop.DoDragDrop(this, dataObject, DragDropEffects.Copy);
-                    }
+                    DragDrop.DoDragDrop(this, dataObject, DragDropEffects.Copy);
                 }
 
                 e.Handled = true;

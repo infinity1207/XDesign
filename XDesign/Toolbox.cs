@@ -5,12 +5,7 @@ namespace XDesign
 {
     public class Toolbox : ItemsControl
     {
-        private Size defaultItemSize = new Size(65, 65);
-        public Size DefaultItemSize
-        {
-            get { return this.defaultItemSize; }
-            set { this.defaultItemSize = value; }
-        }
+        public Size DefaultItemSize { get; set; } = new Size(65, 65);
 
         protected override DependencyObject GetContainerForItemOverride()
         {
