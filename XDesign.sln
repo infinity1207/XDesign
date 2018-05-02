@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XDesign", "XDesign\XDesign.csproj", "{A640CBCD-6E5F-42DC-A485-2704B3BD77A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study", "Study\Study.csproj", "{A1222949-B31A-474E-ABFE-E1DBA653ABC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A640CBCD-6E5F-42DC-A485-2704B3BD77A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A640CBCD-6E5F-42DC-A485-2704B3BD77A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A640CBCD-6E5F-42DC-A485-2704B3BD77A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A640CBCD-6E5F-42DC-A485-2704B3BD77A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1222949-B31A-474E-ABFE-E1DBA653ABC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1222949-B31A-474E-ABFE-E1DBA653ABC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1222949-B31A-474E-ABFE-E1DBA653ABC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1222949-B31A-474E-ABFE-E1DBA653ABC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA61DF35-C456-4697-ADE9-8016846D3FBC}
+	EndGlobalSection
+EndGlobal
