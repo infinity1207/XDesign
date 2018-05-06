@@ -4,10 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Xml;
+using XDesign.MVVM.Model;
+using XDesign.MVVM.View;
 
 namespace XDesign
 {
@@ -77,27 +80,50 @@ namespace XDesign
             string xamlString = e.Data.GetData("DESIGNER_ITEM") as string;
             if (!String.IsNullOrEmpty(xamlString))
             {
-                DesignerItem newItem = null;
                 FrameworkElement content = XamlReader.Load(XmlReader.Create(new StringReader(xamlString))) as FrameworkElement;
-
                 if (content != null)
                 {
-                    newItem = new DesignerItem();
-                    newItem.Content = content;
-
                     Point position = e.GetPosition(this);
-                    if (content.MinHeight != 0 && content.MinWidth != 0)
+                    var w = 200;
+                    var h = 100;
+                    var x = Math.Max(0, position.X - w / 2);
+                    var y = Math.Max(0, position.Y - h / 2);
+
+                    var element = ElementFactory.CreateElement(
+                        ElementType.Barcode,
+                        new Rect
+                        {
+                            X = x,
+                            Y = y,
+                            Width = w,
+                            Height = h
+                        });
+
+                    var newItem = new DesignerItem()
                     {
-                        newItem.Width = content.MinWidth * 2; ;
-                        newItem.Height = content.MinHeight * 2;
-                    }
-                    else
-                    {
-                        newItem.Width = 65;
-                        newItem.Height = 65;
-                    }
-                    DesignerCanvas.SetLeft(newItem, Math.Max(0, position.X - newItem.Width / 2));
-                    DesignerCanvas.SetTop(newItem, Math.Max(0, position.Y - newItem.Height / 2));
+                        DataContext = element
+                    };
+
+                    var binding = new Binding();
+                    binding.Converter = new ElementVisualConverter();
+                    newItem.SetBinding(ContentControl.ContentProperty, binding);
+
+                    var leftBinding = new Binding();
+                    leftBinding.Path = new PropertyPath("Bound.X");
+                    newItem.SetBinding(Canvas.LeftProperty, leftBinding);
+
+                    var topBinding = new Binding();
+                    topBinding.Path = new PropertyPath("Bound.Y");
+                    newItem.SetBinding(Canvas.TopProperty, topBinding);
+
+                    //var widthBinding = new Binding();
+                    //widthBinding.Path = new PropertyPath("Bound.Width");
+                    //newItem.SetBinding(Canvas.WidthProperty, widthBinding);
+
+                    //var heightBinding = new Binding();
+                    //heightBinding .Path = new PropertyPath("Bound.Height");
+                    //newItem.SetBinding(Canvas.HeightProperty, heightBinding);
+
                     this.Children.Add(newItem);
 
                     this.DeselectAll();

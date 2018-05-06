@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using XDesign.MVVM.Model;
 
 namespace XDesign
 {
@@ -44,8 +45,11 @@ namespace XDesign
 
                 foreach (DesignerItem item in this._designerCanvas.SelectedItems)
                 {
-                    Canvas.SetLeft(item, Canvas.GetLeft(item) + deltaHorizontal);
-                    Canvas.SetTop(item, Canvas.GetTop(item) + deltaVertical);
+                    BaseRectangleElement element = item.DataContext as BaseRectangleElement;
+                    var bound = element.Bound;
+                    bound.X = Canvas.GetLeft(item) + deltaHorizontal;
+                    bound.Y= Canvas.GetTop(item) + deltaVertical;
+                    element.Bound = bound;
                 }
 
                 this._designerCanvas.InvalidateMeasure();

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using XDesign.MVVM.Model;
 
 namespace XDesign 
 {
@@ -48,16 +49,21 @@ namespace XDesign
 
                 foreach (DesignerItem item in this._designerCanvas.SelectedItems)
                 {
+                    BaseRectangleElement element = item.DataContext as BaseRectangleElement;
+                    var bound = element.Bound;
+
                     switch (VerticalAlignment)
                     {
                         case VerticalAlignment.Bottom:
                             dragDeltaVertical = Math.Min(-e.VerticalChange, minDeltaVertical);
-                            item.Height = item.ActualHeight - dragDeltaVertical;
+                            //item.Height = item.ActualHeight - dragDeltaVertical;
+                            bound.Height = item.ActualHeight - dragDeltaVertical;
                             break;
                         case VerticalAlignment.Top:
                             dragDeltaVertical = Math.Min(Math.Max(-minTop, e.VerticalChange), minDeltaVertical);
                             Canvas.SetTop(item, Canvas.GetTop(item) + dragDeltaVertical);
-                            item.Height = item.ActualHeight - dragDeltaVertical;
+                            //item.Height = item.ActualHeight - dragDeltaVertical;
+                            bound.Height = item.ActualHeight - dragDeltaVertical;
                             break;
                     }
 
@@ -66,13 +72,18 @@ namespace XDesign
                         case HorizontalAlignment.Left:
                             dragDeltaHorizontal = Math.Min(Math.Max(-minLeft, e.HorizontalChange), minDeltaHorizontal);
                             Canvas.SetLeft(item, Canvas.GetLeft(item) + dragDeltaHorizontal);
-                            item.Width = item.ActualWidth - dragDeltaHorizontal;
+                            //item.Width = item.ActualWidth - dragDeltaHorizontal;
+                            bound.Width = item.ActualWidth - dragDeltaHorizontal;
+                            
                             break;
                         case HorizontalAlignment.Right:
                             dragDeltaHorizontal = Math.Min(-e.HorizontalChange, minDeltaHorizontal);
-                            item.Width = item.ActualWidth - dragDeltaHorizontal;
+                            //item.Width = item.ActualWidth - dragDeltaHorizontal;
+                            bound.Width = item.ActualWidth - dragDeltaHorizontal;
                             break;
                     }
+
+                    element.Bound = bound;
                 }
 
                 e.Handled = true;

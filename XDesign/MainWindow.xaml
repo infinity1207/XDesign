@@ -8,6 +8,7 @@
     Title="MainWindow"
     Width="800"
     Height="600"
+    UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <DockPanel Margin="0">
@@ -24,20 +25,22 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Border Margin="3,1,0,0"
-                    Grid.Column="1"
-                    BorderBrush="LightGray"
-                    BorderThickness="1">
+            <Border
+                Grid.Column="1"
+                Margin="3,1,0,0"
+                BorderBrush="LightGray"
+                BorderThickness="1">
                 <Grid>
-                    <ScrollViewer Name="DesignerScrollViewer"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  VerticalScrollBarVisibility="Auto">
-                        <local:DesignerCanvas x:Name="MyDesignerCanvas"
-                                              MinHeight="100"
-                                              MinWidth="100"
-                                              AllowDrop="True"
-                                              Background="AliceBlue">
-                        </local:DesignerCanvas>
+                    <ScrollViewer
+                        Name="DesignerScrollViewer"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Auto">
+                        <local:DesignerCanvas
+                            x:Name="MyDesignerCanvas"
+                            MinWidth="100"
+                            MinHeight="100"
+                            AllowDrop="True"
+                            Background="AliceBlue" />
                     </ScrollViewer>
                 </Grid>
             </Border>
@@ -50,10 +53,12 @@
                     <ItemsControl.Items>
                         <Image
                             IsHitTestVisible="False"
+                            SnapsToDevicePixels="True"
                             Source="/Images/Barcode.png"
                             Stretch="Fill" />
                         <Image
                             IsHitTestVisible="False"
+                            SnapsToDevicePixels="True"
                             Source="/Images/Barcode.png"
                             Stretch="Fill" />
                     </ItemsControl.Items>

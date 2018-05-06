@@ -9,25 +9,23 @@
     Width="525"
     Height="350"
     mc:Ignorable="d">
-    <Grid>
-        <ContentControl Name="contentControl">
-            <ContentControl.Template>
-                <ControlTemplate TargetType="ContentControl">
-                    <Border Name="bd1">
-                        <ContentPresenter Name="cp1" ContentSource="Content" />
-                    </Border>
-                </ControlTemplate>
-            </ContentControl.Template>
-
-            <ContentControl.ContentTemplate>
-                <DataTemplate>
-                    <Border Name="bd2">
-                        <ContentPresenter Name="cp2" Content="{Binding}" />
-                    </Border>
-                </DataTemplate>
-            </ContentControl.ContentTemplate>
-
-            <Button Name="btn" Click="btn_Click">anniu</Button>
-        </ContentControl>
-    </Grid>
+    <StackPanel
+        Width="150"
+        Margin="7"
+        Orientation="Horizontal">
+        <!--  Single pixel line with pixel snapping turned OFF.  -->
+        <Rectangle
+            Width="45.5"
+            Height="1"
+            Margin="10"
+            Fill="Red"
+            SnapsToDevicePixels="False" />
+        <!--  Single pixel line with pixel snapping turned ON.  -->
+        <Rectangle
+            Width="45.5"
+            Height="1"
+            Margin="10"
+            Fill="Red"
+            SnapsToDevicePixels="True" />
+    </StackPanel>
 </Window>

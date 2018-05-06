@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="XDesign.MVVM.View.ElementVisual.BarcodeVisual"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="clr-namespace:XDesign.MVVM.View"
+    d:DesignHeight="100"
+    d:DesignWidth="100"
+    IsHitTestVisible="False"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <v:BarcodeConverterEx x:Key="BarcodeConverterEx" />
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image SnapsToDevicePixels="True" Stretch="None">
+            <Image.Source>
+                <MultiBinding Converter="{StaticResource BarcodeConverterEx}">
+                    <Binding Path="." />
+                    <Binding Path="Bound" />
+                    <Binding Path="BarcodeType" />
+                    <Binding Path="Data" />
+                </MultiBinding>
+            </Image.Source>
+        </Image>
+    </Grid>
+</UserControl>
