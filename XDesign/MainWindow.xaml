@@ -10,6 +10,7 @@
     Height="600"
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
+    Loaded="MainWindow_OnLoaded"
     mc:Ignorable="d">
     <DockPanel Margin="0">
         <ToolBar Height="30" DockPanel.Dock="Top">
@@ -23,6 +24,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="230" />
                 <ColumnDefinition />
+                <ColumnDefinition Width="230" />
             </Grid.ColumnDefinitions>
 
             <Border
@@ -65,6 +67,18 @@
                 </local:Toolbox>
 
             </Border>
+
+            <Grid Grid.Column="2">
+                <TabControl>
+                    <TabItem Header="Text">
+                    </TabItem>
+                    <TabItem Header="Barocde">
+                        <StackPanel>
+                            <ComboBox x:Name="BarcodeTypes" SelectedItem="{Binding SelectedElement.BarcodeType}"></ComboBox>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>

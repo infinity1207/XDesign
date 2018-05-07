@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -70,13 +71,14 @@ namespace XDesign.MVVM.View
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var element = values[0] as BarcodeElement;
+            Debug.Assert(element != null);
 
             Barcode tbarcode = new Barcode();
             var w = System.Convert.ToInt32(element.Bound.Width);
             var h = System.Convert.ToInt32(element.Bound.Height);
             tbarcode.BoundingRectangle = new System.Drawing.Rectangle(0, 0, w, h);
             tbarcode.Data = element.Data;
-            tbarcode.BarcodeType = BarcodeType.Code39;
+            tbarcode.BarcodeType = element.BarcodeType;
 
             using (var bitmap = tbarcode.DrawBitmap())
             {

@@ -13,15 +13,21 @@ namespace XDesign.MVVM.ViewModel
     {
         public ObservableCollection<BaseElement> Elements = new ObservableCollection<BaseElement>();
 
-        public ElementViewModel()
-        {
+        private BaseElement _selectedElement;
 
+        public BaseElement SelectedElement
+        {
+            get => _selectedElement;
+            set
+            {
+                _selectedElement = value;
+                RaisePropertyChanged();
+            }
         }
 
         public void AddElement(BaseElement element)
         {
             // 设置ZOrder
-
             Elements.Add(element);
         }
 

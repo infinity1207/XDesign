@@ -11,12 +11,13 @@ using System.Windows.Markup;
 using System.Xml;
 using XDesign.MVVM.Model;
 using XDesign.MVVM.View;
+using XDesign.MVVM.ViewModel;
 
 namespace XDesign
 {
     public class DesignerCanvas : Canvas
     {
-        private Point? dragStartPoint = null;
+        private Point? _dragStartPoint;
 
         public IEnumerable<DesignerItem> SelectedItems
         {
@@ -41,9 +42,9 @@ namespace XDesign
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
-            if (e.Source == this)
+            if (Equals(e.Source, this))
             {
-                this.dragStartPoint = new Point?(e.GetPosition(this));
+                this._dragStartPoint = new Point?(e.GetPosition(this));
                 this.DeselectAll();
                 e.Handled = true;
             }
@@ -55,19 +56,16 @@ namespace XDesign
 
             if (e.LeftButton != MouseButtonState.Pressed)
             {
-                this.dragStartPoint = null;
+                this._dragStartPoint = null;
             }
 
-            if (this.dragStartPoint.HasValue)
+            if (this._dragStartPoint.HasValue)
             {
                 AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(this);
                 if (adornerLayer != null)
                 {
-                    RubberbandAdorner adorner = new RubberbandAdorner(this, this.dragStartPoint);
-                    if (adorner != null)
-                    {
-                        adornerLayer.Add(adorner);
-                    }
+                    RubberbandAdorner adorner = new RubberbandAdorner(this, _dragStartPoint);
+                    adornerLayer.Add(adorner);
                 }
 
                 e.Handled = true;
@@ -104,27 +102,18 @@ namespace XDesign
                         DataContext = element
                     };
 
-                    var binding = new Binding();
-                    binding.Converter = new ElementVisualConverter();
+                    var binding = new Binding {Converter = new ElementVisualConverter()};
                     newItem.SetBinding(ContentControl.ContentProperty, binding);
 
-                    var leftBinding = new Binding();
-                    leftBinding.Path = new PropertyPath("Bound.X");
+                    var leftBinding = new Binding { Path = new PropertyPath("Bound.X") };
                     newItem.SetBinding(Canvas.LeftProperty, leftBinding);
 
-                    var topBinding = new Binding();
-                    topBinding.Path = new PropertyPath("Bound.Y");
+                    var topBinding = new Binding { Path = new PropertyPath("Bound.Y") };
                     newItem.SetBinding(Canvas.TopProperty, topBinding);
 
-                    //var widthBinding = new Binding();
-                    //widthBinding.Path = new PropertyPath("Bound.Width");
-                    //newItem.SetBinding(Canvas.WidthProperty, widthBinding);
-
-                    //var heightBinding = new Binding();
-                    //heightBinding .Path = new PropertyPath("Bound.Height");
-                    //newItem.SetBinding(Canvas.HeightProperty, heightBinding);
-
                     this.Children.Add(newItem);
+
+                    ViewModelLocator.Element.AddElement(element);
 
                     this.DeselectAll();
                     newItem.IsSelected = true;

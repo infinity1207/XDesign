@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using XDesign.MVVM.Model;
+using XDesign.MVVM.ViewModel;
 
 namespace XDesign
 {
@@ -12,8 +14,19 @@ namespace XDesign
 
         public bool IsSelected
         {
-            get => (bool) GetValue(IsSelectedProperty);
-            set => SetValue(IsSelectedProperty, value);
+            get => (bool)GetValue(IsSelectedProperty);
+            set
+            {
+                if (value)
+                {
+                    ViewModelLocator.Element.SelectedElement = this.DataContext as BaseElement;
+                }
+                else
+                {
+                    ViewModelLocator.Element.SelectedElement = null;
+                }
+                SetValue(IsSelectedProperty, value);
+            }
         }
 
         public static readonly DependencyProperty MoveThumbTemplateProperty =

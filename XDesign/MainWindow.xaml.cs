@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using NLog;
+using TECIT.TBarCode;
+using XDesign.MVVM.ViewModel;
 
 namespace XDesign
 {
@@ -20,6 +23,19 @@ namespace XDesign
             Logger = NLog.LogManager.GetCurrentClassLogger();
 
             Logger.Debug("Hello World");
+
+            DataContext = ViewModelLocator.Element;
+        }
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            BarcodeTypes.ItemsSource = new List<BarcodeType>
+            {
+                BarcodeType.Code39,
+                BarcodeType.Code128,
+                BarcodeType.DataMatrix,
+                BarcodeType.QRCode
+            };
         }
     }
 }
