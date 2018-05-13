@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -39,9 +40,41 @@ namespace XDesign
             }
         }
 
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            base.OnPreviewKeyDown(e);
+
+            if (e.Key == Key.Delete)
+            {
+                var items = new List<DesignerItem>();
+                foreach (var item in SelectedItems)
+                {
+                    items.Add(item);
+                }
+
+                foreach (var item in items)
+                {
+                    Children.Remove(item);
+                    var element = item.DataContext as BaseElement;
+                    Debug.Assert(element != null);
+                    ViewModelLocator.Element.RemoveElement(element);
+                }
+            }
+
+            e.Handled = true;
+        }
+
+        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnPreviewMouseDown(e);
+
+            Keyboard.Focus(this);
+        }
+
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
+
             if (Equals(e.Source, this))
             {
                 this._dragStartPoint = new Point?(e.GetPosition(this));
@@ -75,6 +108,8 @@ namespace XDesign
         protected override void OnDrop(DragEventArgs e)
         {
             base.OnDrop(e);
+            Keyboard.Focus(this);
+
             string xamlString = e.Data.GetData("DESIGNER_ITEM") as string;
             if (!String.IsNullOrEmpty(xamlString))
             {

@@ -4,7 +4,7 @@
     xmlns:s="clr-namespace:XDesign">
 
     <Style TargetType="{x:Type s:ToolboxItem}">
-        <Setter Property="Control.Padding" Value="5" />
+        <Setter Property="Control.Padding" Value="10" />
         <Setter Property="ContentControl.HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="ContentControl.VerticalContentAlignment" Value="Stretch" />
         <Setter Property="ToolTip" Value="{Binding ToolTip}" />
