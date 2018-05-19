@@ -13,6 +13,7 @@ using System.Xml;
 using XDesign.MVVM.Model;
 using XDesign.MVVM.View;
 using XDesign.MVVM.ViewModel;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace XDesign
 {
@@ -30,6 +31,14 @@ namespace XDesign
 
                 return selectedItems;
             }
+        }
+
+        public DesignerCanvas()
+        {
+            Messenger.Default.Register<BaseElement>(this, "JoinElement", (element) =>
+            {
+                AddChild(element);
+            });
         }
 
         public void DeselectAll()
@@ -132,30 +141,36 @@ namespace XDesign
                             Height = h
                         });
 
-                    var newItem = new DesignerItem()
-                    {
-                        DataContext = element
-                    };
-
-                    var binding = new Binding {Converter = new ElementVisualConverter()};
-                    newItem.SetBinding(ContentControl.ContentProperty, binding);
-
-                    var leftBinding = new Binding { Path = new PropertyPath("Bound.X") };
-                    newItem.SetBinding(Canvas.LeftProperty, leftBinding);
-
-                    var topBinding = new Binding { Path = new PropertyPath("Bound.Y") };
-                    newItem.SetBinding(Canvas.TopProperty, topBinding);
-
-                    this.Children.Add(newItem);
-
                     ViewModelLocator.Element.AddElement(element);
 
+                    var newItem = AddChild(element);
                     this.DeselectAll();
                     newItem.IsSelected = true;
                 }
 
                 e.Handled = true;
             }
+        }
+
+        public DesignerItem AddChild(BaseElement element)
+        {
+            var newItem = new DesignerItem()
+            {
+                DataContext = element
+            };
+
+            var binding = new Binding { Converter = new ElementVisualConverter() };
+            newItem.SetBinding(ContentControl.ContentProperty, binding);
+
+            var leftBinding = new Binding { Path = new PropertyPath("Bound.X") };
+            newItem.SetBinding(Canvas.LeftProperty, leftBinding);
+
+            var topBinding = new Binding { Path = new PropertyPath("Bound.Y") };
+            newItem.SetBinding(Canvas.TopProperty, topBinding);
+
+            this.Children.Add(newItem);
+
+            return newItem;
         }
 
         protected override Size MeasureOverride(Size constraint)

@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using GalaSoft.MvvmLight;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
 namespace XDesign.MVVM.Model
 {
@@ -10,14 +14,15 @@ namespace XDesign.MVVM.Model
         Barcode
     }
 
+    [JsonObject(MemberSerialization.OptIn)]
     public abstract class BaseElement : ObservableObject
     {
-        private ElementType _elementType;
+        [JsonProperty(PropertyName = "ElementType")]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ElementType ElementType { get; set; }
 
         private int _zOrder;
-
-        public ElementType ElementType { get => _elementType; set => _elementType = value; }
-
+        [JsonProperty(PropertyName = "ZOrder")]
         public int ZOrder
         {
             get => _zOrder;
@@ -32,10 +37,12 @@ namespace XDesign.MVVM.Model
         }
     }
 
+    [JsonObject(MemberSerialization.OptIn)]
     public abstract class BaseRectangleElement : BaseElement
     {
         private Rect _bound;
 
+        [JsonProperty(PropertyName = "Bound")]
         public Rect Bound
         {
             get => _bound;
@@ -54,6 +61,7 @@ namespace XDesign.MVVM.Model
     {
         private string _text;
 
+        [JsonProperty(PropertyName = "Text")]
         public string Text { get => _text; set => _text = value; }
 
         public TextElement()
@@ -61,5 +69,4 @@ namespace XDesign.MVVM.Model
             ElementType = ElementType.Text;
         }
     }
-
 }

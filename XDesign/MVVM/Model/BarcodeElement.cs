@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TECIT.TBarCode;
+﻿using TECIT.TBarCode;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace XDesign.MVVM.Model
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class BarcodeElement : BaseRectangleElement
     {
         private string _data;
 
+        [JsonProperty(PropertyName = "Data")]
         public string Data
         {
             get => _data;
@@ -26,6 +25,8 @@ namespace XDesign.MVVM.Model
 
         private BarcodeType _barcodeType;
 
+        [JsonProperty(PropertyName = "BarcodeType")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public BarcodeType BarcodeType
         {
             get => _barcodeType;
