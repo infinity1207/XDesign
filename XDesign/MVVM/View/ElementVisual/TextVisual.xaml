@@ -5,10 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:XDesign.MVVM.View.ElementVisual"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="{Binding Bound.Width}"
+    Height="{Binding Bound.Height}"
     d:DesignHeight="100"
-    d:DesignWidth="100"
+    d:DesignWidth="200"
+    IsHitTestVisible="False"
     mc:Ignorable="d">
-    <Grid>
-        <TextBlock Text="{Binding Text}" />
+    <Grid Background="Yellow">
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="{Binding Text}" />
     </Grid>
 </UserControl>

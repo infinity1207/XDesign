@@ -74,8 +74,8 @@ namespace XDesign.MVVM.View
             Debug.Assert(element != null);
 
             Barcode tbarcode = new Barcode();
-            var w = System.Convert.ToInt32(element.Bound.Width);
-            var h = System.Convert.ToInt32(element.Bound.Height);
+            var w = System.Convert.ToInt32(element.Bound.Width * Const.ScreenScale);
+            var h = System.Convert.ToInt32(element.Bound.Height * Const.ScreenScale);
             tbarcode.BoundingRectangle = new System.Drawing.Rectangle(0, 0, w, h);
             tbarcode.Data = element.Data;
             tbarcode.BarcodeType = element.BarcodeType;

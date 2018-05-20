@@ -57,10 +57,10 @@ namespace XDesign.MVVM.Model
         }
     }
 
+    [JsonObject(MemberSerialization.OptIn)]
     public class TextElement : BaseRectangleElement
     {
         private string _text;
-
         [JsonProperty(PropertyName = "Text")]
         public string Text { get => _text; set => _text = value; }
 

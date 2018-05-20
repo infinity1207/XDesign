@@ -81,14 +81,19 @@
                 BorderThickness="1">
                 <local:Toolbox DefaultItemSize="55,55">
                     <ItemsControl.Items>
-                        <fa:ImageAwesome
-                            Icon="Barcode"
-                            IsHitTestVisible="False"
-                            SnapsToDevicePixels="True" />
-                        <fa:ImageAwesome
-                            Icon="Font"
-                            IsHitTestVisible="False"
-                            SnapsToDevicePixels="True" />
+                        <local:ToolboxItem Tag="Barcode">
+                            <fa:ImageAwesome
+                                Icon="Barcode"
+                                IsHitTestVisible="False"
+                                SnapsToDevicePixels="True" />
+                        </local:ToolboxItem>
+                        <local:ToolboxItem Tag="Text">
+                            <fa:ImageAwesome
+                                Icon="Font"
+                                IsHitTestVisible="False"
+                                SnapsToDevicePixels="True"
+                                Tag="Text" />
+                        </local:ToolboxItem>
                     </ItemsControl.Items>
                 </local:Toolbox>
             </Border>

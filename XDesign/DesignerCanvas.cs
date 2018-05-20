@@ -119,11 +119,10 @@ namespace XDesign
             base.OnDrop(e);
             Keyboard.Focus(this);
 
-            string xamlString = e.Data.GetData("DESIGNER_ITEM") as string;
-            if (!String.IsNullOrEmpty(xamlString))
+            string tag = e.Data.GetData("DESIGNER_ITEM") as string;
+            if (!String.IsNullOrEmpty(tag))
             {
-                FrameworkElement content = XamlReader.Load(XmlReader.Create(new StringReader(xamlString))) as FrameworkElement;
-                if (content != null)
+                if (Enum.TryParse<ElementType>(tag, out var elementType))
                 {
                     Point position = e.GetPosition(this);
                     var w = 200;
@@ -132,7 +131,7 @@ namespace XDesign
                     var y = Math.Max(0, position.Y - h / 2);
 
                     var element = ElementFactory.CreateElement(
-                        ElementType.Barcode,
+                        elementType,
                         new Rect
                         {
                             X = x,
@@ -167,6 +166,12 @@ namespace XDesign
 
             var topBinding = new Binding { Path = new PropertyPath("Bound.Y") };
             newItem.SetBinding(Canvas.TopProperty, topBinding);
+
+            var widthBinding = new Binding { Path = new PropertyPath("Bound.Width") };
+            newItem.SetBinding(Canvas.WidthProperty, widthBinding);
+
+            var heightBinding = new Binding { Path = new PropertyPath("Bound.Height") };
+            newItem.SetBinding(Canvas.HeightProperty, heightBinding);
 
             this.Children.Add(newItem);
 

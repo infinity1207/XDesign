@@ -8,7 +8,6 @@ namespace XDesign.MVVM.Model
     public class BarcodeElement : BaseRectangleElement
     {
         private string _data;
-
         [JsonProperty(PropertyName = "Data")]
         public string Data
         {
@@ -24,7 +23,6 @@ namespace XDesign.MVVM.Model
         }
 
         private BarcodeType _barcodeType;
-
         [JsonProperty(PropertyName = "BarcodeType")]
         [JsonConverter(typeof(StringEnumConverter))]
         public BarcodeType BarcodeType

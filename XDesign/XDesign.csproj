@@ -93,6 +93,7 @@
     <Compile Include="Adorners\ResizeAdorner.cs" />
     <Compile Include="Adorners\ResizeChrome.cs" />
     <Compile Include="Adorners\RubberbandAdorner.cs" />
+    <Compile Include="Const.cs" />
     <Compile Include="DesignerCanvas.cs" />
     <Compile Include="DesignerItem.cs" />
     <Compile Include="MoveThumb.cs" />

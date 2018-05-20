@@ -32,14 +32,10 @@ namespace XDesign
             if (_dragStartPoint.HasValue)
             {
                 Point position = e.GetPosition(this);
-                if ((SystemParameters.MinimumHorizontalDragDistance <=
-                    Math.Abs(position.X - _dragStartPoint.Value.X)) ||
-                    (SystemParameters.MinimumVerticalDragDistance <=
-                    Math.Abs(position.Y - _dragStartPoint.Value.Y)))
+                if ((SystemParameters.MinimumHorizontalDragDistance <= Math.Abs(position.X - _dragStartPoint.Value.X)) ||
+                    (SystemParameters.MinimumVerticalDragDistance <= Math.Abs(position.Y - _dragStartPoint.Value.Y)))
                 {
-                    string xamlString = XamlWriter.Save(Content);
-                    DataObject dataObject = new DataObject("DESIGNER_ITEM", xamlString);
-
+                    DataObject dataObject = new DataObject("DESIGNER_ITEM", Tag);
                     DragDrop.DoDragDrop(this, dataObject, DragDropEffects.Copy);
                 }
 
