@@ -100,7 +100,10 @@
     <Compile Include="MVVM\Model\BarcodeElement.cs" />
     <Compile Include="MVVM\Model\BaseElement.cs" />
     <Compile Include="MVVM\Model\ElementFactory.cs" />
+    <Compile Include="MVVM\Model\Page.cs" />
     <Compile Include="MVVM\ViewModel\ElementViewModel.cs" />
+    <Compile Include="MVVM\Model\Job.cs" />
+    <Compile Include="MVVM\ViewModel\JobViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ViewModelLocator.cs" />
     <Compile Include="MVVM\View\ElementVisualConverter.cs" />
     <Compile Include="MVVM\View\ElementVisual\BarcodeVisual.xaml.cs">

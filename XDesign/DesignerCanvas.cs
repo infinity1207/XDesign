@@ -66,7 +66,7 @@ namespace XDesign
                     Children.Remove(item);
                     var element = item.DataContext as BaseElement;
                     Debug.Assert(element != null);
-                    ViewModelLocator.Element.RemoveElement(element);
+                    ViewModelLocator.Job.RemoveElement(element);
                 }
             }
 
@@ -140,7 +140,7 @@ namespace XDesign
                             Height = h
                         });
 
-                    ViewModelLocator.Element.AddElement(element);
+                    ViewModelLocator.Job.AddElement(element);
 
                     var newItem = AddChild(element);
                     this.DeselectAll();

@@ -24,7 +24,7 @@ namespace XDesign
 
             Logger.Debug("Hello World");
 
-            DataContext = ViewModelLocator.Element;
+            DataContext = ViewModelLocator.Job;
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)

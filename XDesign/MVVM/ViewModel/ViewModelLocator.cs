@@ -9,9 +9,9 @@ namespace XDesign.MVVM.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<ElementViewModel>();
+            SimpleIoc.Default.Register<JobViewModel>();
         }
 
-        public static ElementViewModel Element => ServiceLocator.Current.GetInstance<ElementViewModel>();
+        public static JobViewModel Job => ServiceLocator.Current.GetInstance<JobViewModel>();
     }
 }
