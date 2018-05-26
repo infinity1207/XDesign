@@ -60,14 +60,24 @@
                 BorderThickness="1"
                 FocusManager.FocusedElement="{Binding ElementName=MyDesignerCanvas}">
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <local:Ruler Grid.Row="0" UseLayoutRounding="True" />
                     <ScrollViewer
                         Name="DesignerScrollViewer"
+                        Grid.Row="1"
                         HorizontalScrollBarVisibility="Auto"
                         VerticalScrollBarVisibility="Auto">
                         <local:DesignerCanvas
                             x:Name="MyDesignerCanvas"
+                            Width="{Binding Job.Page.Width}"
+                            Height="{Binding Job.Page.Height}"
                             MinWidth="100"
                             MinHeight="100"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
                             AllowDrop="True"
                             Background="AliceBlue"
                             Focusable="True" />
