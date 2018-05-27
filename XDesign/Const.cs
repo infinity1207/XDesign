@@ -1,22 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Management;
 
 namespace XDesign
 {
     public class Const
     {
-        public static float ScreenScale
+        private static int _deviceDpi = 0;
+        public static int DeviceDpi
         {
-            get;
-            set;
+            get
+            {
+                if (_deviceDpi == 0)
+                {
+                    using (ManagementClass mc = new ManagementClass("Win32_DesktopMonitor"))
+                    {
+                        using (ManagementObjectCollection moc = mc.GetInstances())
+                        {
+                            foreach (ManagementObject each in moc)
+                            {
+                                _deviceDpi = int.Parse((each.Properties["PixelsPerXLogicalInch"].Value.ToString()));
+                                break;
+                            }
+
+                        }
+                    }
+                }
+                return _deviceDpi;
+            }
         }
 
-        static Const()
+        public static float ScreenScale
         {
-            ScreenScale = 1.25f;
+            get { return DeviceDpi / 96f; }
         }
     }
 }

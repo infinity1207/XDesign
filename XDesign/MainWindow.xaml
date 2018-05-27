@@ -61,13 +61,35 @@
                 FocusManager.FocusedElement="{Binding ElementName=MyDesignerCanvas}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30" />
+                        <RowDefinition Height="17" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <local:Ruler Grid.Row="0" UseLayoutRounding="True" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="17" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BorderThickness="0,0,1,1">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="#8290A3" />
+                        </Border.BorderBrush>
+                        <TextBlock Text="厘米" TextAlignment="Right" />
+                    </Border>
+                    <local:HRuler
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        ZeroPostion="10" />
+                    <local:VRuler
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        ZeroPostion="10" />
                     <ScrollViewer
                         Name="DesignerScrollViewer"
                         Grid.Row="1"
+                        Grid.Column="1"
+                        Background="#CFCFCF"
                         HorizontalScrollBarVisibility="Auto"
                         VerticalScrollBarVisibility="Auto">
                         <local:DesignerCanvas
@@ -76,10 +98,11 @@
                             Height="{Binding Job.Page.Height}"
                             MinWidth="100"
                             MinHeight="100"
+                            Margin="10,10,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             AllowDrop="True"
-                            Background="AliceBlue"
+                            Background="#FFFFFF"
                             Focusable="True" />
                     </ScrollViewer>
                 </Grid>
