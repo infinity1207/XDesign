@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using XDesign.MVVM.Model.Element;
 
 namespace XDesign.MVVM.Model
 {
@@ -10,6 +11,6 @@ namespace XDesign.MVVM.Model
         public Page Page { get; set; } = new Page { Width=800, Height= 600 };
 
         [JsonProperty(PropertyName = "Elements")]
-        public ObservableCollection<BaseElement> Elements = new ObservableCollection<BaseElement>();
+        public ObservableCollection<IElement> Elements = new ObservableCollection<IElement>();
     }
 }

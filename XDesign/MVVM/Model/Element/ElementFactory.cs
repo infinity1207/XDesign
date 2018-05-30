@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace XDesign.MVVM.Model
+namespace XDesign.MVVM.Model.Element
 {
     public class ElementFactory
     {
@@ -16,14 +16,14 @@ namespace XDesign.MVVM.Model
                     element = new TextElement
                     {
                         Bound = bound,
-                        Text = "X-Design"
+                        Content = "X-Design"
                     };
                     break;
                 case ElementType.Barcode:
                     element = new BarcodeElement
                     {
                         Bound = bound,
-                        Data = "20091207"
+                        Content = "20091207"
                     };
                     break;
                 default:

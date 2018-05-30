@@ -1,6 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using XDesign.MVVM.Model;
-using Newtonsoft.Json;
+﻿using XDesign.MVVM.Model;
+using XDesign.MVVM.Model.Element;
 
 namespace XDesign.MVVM.ViewModel
 {
@@ -9,8 +8,8 @@ namespace XDesign.MVVM.ViewModel
         const string DefaultExt = ".xdf";
         const string Filter = "X-Design files (*.xdf)|*.xdf";
 
-        private BaseElement _selectedElement;
-        public BaseElement SelectedElement
+        private IElement _selectedElement;
+        public IElement  SelectedElement
         {
             get => _selectedElement;
             set
@@ -20,13 +19,13 @@ namespace XDesign.MVVM.ViewModel
             }
         }
 
-        public void AddElement(BaseElement element)
+        public void AddElement(IElement element)
         {
             // 设置ZOrder
             Job.Elements.Add(element);
         }
 
-        public void RemoveElement(BaseElement element)
+        public void RemoveElement(IElement element)
         {
             Job.Elements.Remove(element);
         }

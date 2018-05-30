@@ -1,28 +1,19 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 
-namespace XDesign.MVVM.Model
+namespace XDesign.MVVM.Model.Element
 {
-    public enum ElementType
-    {
-        None,
-        Text,
-        Barcode
-    }
-
     [JsonObject(MemberSerialization.OptIn)]
-    public abstract class BaseElement : ObservableObject
+    public abstract class BaseElement : ObservableObject, IElement
     {
-        [JsonProperty(PropertyName = "ElementType")]
+        [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
-        public ElementType ElementType { get; set; }
+        public ElementType Type { get; set; }
 
         private int _zOrder;
-        [JsonProperty(PropertyName = "ZOrder")]
+        [JsonProperty]
         public int ZOrder
         {
             get => _zOrder;
@@ -42,7 +33,7 @@ namespace XDesign.MVVM.Model
     {
         private Rect _bound;
 
-        [JsonProperty(PropertyName = "Bound")]
+        [JsonProperty]
         public Rect Bound
         {
             get => _bound;
@@ -58,15 +49,25 @@ namespace XDesign.MVVM.Model
     }
 
     [JsonObject(MemberSerialization.OptIn)]
-    public class TextElement : BaseRectangleElement
+    public abstract class BaseDataBindingElement : BaseRectangleElement, IDataBinding
     {
-        private string _text;
-        [JsonProperty(PropertyName = "Text")]
-        public string Text { get => _text; set => _text = value; }
-
-        public TextElement()
+        private string _context;
+        [JsonProperty]
+        public string Content
         {
-            ElementType = ElementType.Text;
+            get => _context;
+            set
+            {
+                if (_context != value)
+                {
+                    _context = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged("Display");
+                }
+            }
         }
+
+        public virtual string Display => Content;
     }
+
 }

@@ -11,6 +11,7 @@ using XDesign.MVVM.Model;
 using XDesign.MVVM.View;
 using XDesign.MVVM.ViewModel;
 using GalaSoft.MvvmLight.Messaging;
+using XDesign.MVVM.Model.Element;
 
 namespace XDesign
 {
@@ -32,7 +33,7 @@ namespace XDesign
 
         public DesignerCanvas()
         {
-            Messenger.Default.Register<BaseElement>(this, "JoinElement", (element) =>
+            Messenger.Default.Register<IElement>(this, "JoinElement", (element) =>
             {
                 AddChild(element);
             });
@@ -148,7 +149,7 @@ namespace XDesign
             }
         }
 
-        public DesignerItem AddChild(BaseElement element)
+        public DesignerItem AddChild(IElement element)
         {
             var newItem = new DesignerItem()
             {

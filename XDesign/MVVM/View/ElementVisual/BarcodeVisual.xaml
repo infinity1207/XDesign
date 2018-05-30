@@ -21,7 +21,7 @@
                     <Binding Path="." />
                     <Binding Path="Bound" />
                     <Binding Path="BarcodeType" />
-                    <Binding Path="Data" />
+                    <Binding Path="Content" />
                 </MultiBinding>
             </Image.Source>
         </Image>

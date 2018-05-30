@@ -11,10 +11,10 @@
     d:DesignWidth="200"
     IsHitTestVisible="False"
     mc:Ignorable="d">
-    <Grid Background="Yellow">
+    <Grid>
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Text="{Binding Text}" />
+            Text="{Binding Display}" />
     </Grid>
 </UserControl>

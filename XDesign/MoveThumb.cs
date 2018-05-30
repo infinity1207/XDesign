@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using XDesign.MVVM.Model;
+using XDesign.MVVM.Model.Element;
 
 namespace XDesign
 {

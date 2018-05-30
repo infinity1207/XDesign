@@ -1,29 +1,15 @@
-﻿using TECIT.TBarCode;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using TECIT.TBarCode;
 
-namespace XDesign.MVVM.Model
+namespace XDesign.MVVM.Model.Element
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class BarcodeElement : BaseRectangleElement
+    public class BarcodeElement : BaseDataBindingElement 
     {
-        private string _data;
-        [JsonProperty(PropertyName = "Data")]
-        public string Data
-        {
-            get => _data;
-            set
-            {
-                if (_data != value)
-                {
-                    _data = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
         private BarcodeType _barcodeType;
-        [JsonProperty(PropertyName = "BarcodeType")]
+
+        [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
         public BarcodeType BarcodeType
         {
@@ -40,7 +26,7 @@ namespace XDesign.MVVM.Model
 
         public BarcodeElement()
         {
-            ElementType = ElementType.Barcode;
+            Type = ElementType.Barcode;
             BarcodeType = BarcodeType.Code39;
         }
     }

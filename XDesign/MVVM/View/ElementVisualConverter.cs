@@ -8,6 +8,7 @@ using XDesign.MVVM.View.ElementVisual;
 using TECIT.TBarCode;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using XDesign.MVVM.Model.Element;
 
 namespace XDesign.MVVM.View
 {
@@ -21,7 +22,7 @@ namespace XDesign.MVVM.View
 
             Control visual = null;
 
-            switch (element.ElementType)
+            switch (element.Type)
             {
                 case ElementType.None:
                     break;
@@ -77,7 +78,7 @@ namespace XDesign.MVVM.View
             var w = System.Convert.ToInt32(element.Bound.Width * Const.ScreenScale);
             var h = System.Convert.ToInt32(element.Bound.Height * Const.ScreenScale);
             tbarcode.BoundingRectangle = new System.Drawing.Rectangle(0, 0, w, h);
-            tbarcode.Data = element.Data;
+            tbarcode.Data = element.Display;
             tbarcode.BarcodeType = element.BarcodeType;
 
             using (var bitmap = tbarcode.DrawBitmap())

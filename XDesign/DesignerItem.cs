@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using XDesign.MVVM.Model;
+using XDesign.MVVM.Model.Element;
 using XDesign.MVVM.ViewModel;
 
 namespace XDesign
