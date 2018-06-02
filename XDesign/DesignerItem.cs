@@ -20,11 +20,11 @@ namespace XDesign
             {
                 if (value)
                 {
-                    ViewModelLocator.Job.SelectedElement = this.DataContext as BaseElement;
+                    ViewModelLocator.JobViewModel.SelectedElement = this.DataContext as BaseElement;
                 }
                 else
                 {
-                    ViewModelLocator.Job.SelectedElement = null;
+                    ViewModelLocator.JobViewModel.SelectedElement = null;
                 }
                 SetValue(IsSelectedProperty, value);
             }

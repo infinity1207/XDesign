@@ -1,19 +1,18 @@
-﻿<Window
-    x:Class="XDesign.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:con="clr-namespace:Kent.Boogaart.Converters;assembly=Kent.Boogaart.Converters"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:fa="http://schemas.fontawesome.io/icons/"
-    xmlns:local="clr-namespace:XDesign"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
-    Width="1440"
-    Height="900"
-    Loaded="MainWindow_OnLoaded"
-    UseLayoutRounding="True"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+﻿<Window x:Class="XDesign.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:con="clr-namespace:Kent.Boogaart.Converters;assembly=Kent.Boogaart.Converters"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:local="clr-namespace:XDesign"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="MainWindow"
+        Width="1440"
+        Height="900"
+        Loaded="MainWindow_OnLoaded"
+        UseLayoutRounding="True"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
     <Window.Resources>
         <local:ContentIsEnabledConverter x:Key="ContentIsEnabledConverter" />
     </Window.Resources>
@@ -57,12 +56,11 @@
                 <ColumnDefinition Width="230" />
             </Grid.ColumnDefinitions>
 
-            <Border
-                Grid.Column="1"
-                Margin="3,1,0,0"
-                BorderBrush="LightGray"
-                BorderThickness="1"
-                FocusManager.FocusedElement="{Binding ElementName=MyDesignerCanvas}">
+            <Border Grid.Column="1"
+                    Margin="3,1,0,0"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    FocusManager.FocusedElement="{Binding ElementName=MyDesignerCanvas}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="17" />
@@ -72,64 +70,56 @@
                         <ColumnDefinition Width="17" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Border
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        BorderThickness="0,0,1,1">
+                    <Border Grid.Row="0"
+                            Grid.Column="0"
+                            BorderThickness="0,0,1,1">
                         <Border.BorderBrush>
                             <SolidColorBrush Color="#8290A3" />
                         </Border.BorderBrush>
                         <TextBlock Text="厘米" TextAlignment="Right" />
                     </Border>
-                    <local:HRuler
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        ZeroPostion="10" />
-                    <local:VRuler
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        ZeroPostion="10" />
-                    <ScrollViewer
-                        Name="DesignerScrollViewer"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Background="#CFCFCF"
-                        HorizontalScrollBarVisibility="Auto"
-                        VerticalScrollBarVisibility="Auto">
-                        <local:DesignerCanvas
-                            x:Name="MyDesignerCanvas"
-                            Width="{Binding Job.Page.Width}"
-                            Height="{Binding Job.Page.Height}"
-                            MinWidth="100"
-                            MinHeight="100"
-                            Margin="10,10,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            AllowDrop="True"
-                            Background="#FFFFFF"
-                            Focusable="True" />
+                    <local:HRuler Grid.Row="0"
+                                  Grid.Column="1"
+                                  ZeroPostion="10" />
+                    <local:VRuler Grid.Row="1"
+                                  Grid.Column="0"
+                                  ZeroPostion="10" />
+                    <ScrollViewer Name="DesignerScrollViewer"
+                                  Grid.Row="1"
+                                  Grid.Column="1"
+                                  Background="#CFCFCF"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto">
+                        <local:DesignerCanvas x:Name="MyDesignerCanvas"
+                                              Width="{Binding Job.Page.Width}"
+                                              Height="{Binding Job.Page.Height}"
+                                              MinWidth="100"
+                                              MinHeight="100"
+                                              Margin="10,10,0,0"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Top"
+                                              AllowDrop="True"
+                                              Background="#FFFFFF"
+                                              Focusable="True" />
                     </ScrollViewer>
                 </Grid>
             </Border>
 
-            <Border
-                Grid.Column="0"
-                BorderBrush="LightGray"
-                BorderThickness="1">
+            <Border Grid.Column="0"
+                    BorderBrush="LightGray"
+                    BorderThickness="1">
                 <local:Toolbox DefaultItemSize="55,55">
                     <ItemsControl.Items>
                         <local:ToolboxItem Tag="Barcode">
-                            <fa:ImageAwesome
-                                Icon="Barcode"
-                                IsHitTestVisible="False"
-                                SnapsToDevicePixels="True" />
+                            <fa:ImageAwesome Icon="Barcode"
+                                             IsHitTestVisible="False"
+                                             SnapsToDevicePixels="True" />
                         </local:ToolboxItem>
                         <local:ToolboxItem Tag="Text">
-                            <fa:ImageAwesome
-                                Icon="Font"
-                                IsHitTestVisible="False"
-                                SnapsToDevicePixels="True"
-                                Tag="Text" />
+                            <fa:ImageAwesome Icon="Font"
+                                             IsHitTestVisible="False"
+                                             SnapsToDevicePixels="True"
+                                             Tag="Text" />
                         </local:ToolboxItem>
                     </ItemsControl.Items>
                 </local:Toolbox>
@@ -141,13 +131,12 @@
                         <StackPanel>
                             <GroupBox Header="Text">
                                 <Grid>
-                                    <TextBox
-                                        Height="120"
-                                        AcceptsReturn="True"
-                                        IsEnabled="{Binding SelectedElement, Converter={StaticResource ContentIsEnabledConverter}}"
-                                        Text="{Binding SelectedElement.Content, UpdateSourceTrigger=PropertyChanged}"
-                                        TextWrapping="Wrap"
-                                        VerticalScrollBarVisibility="Visible" />
+                                    <TextBox Height="120"
+                                             AcceptsReturn="True"
+                                             IsEnabled="{Binding SelectedElement, Converter={StaticResource ContentIsEnabledConverter}}"
+                                             Text="{Binding SelectedElement.RawContent, UpdateSourceTrigger=PropertyChanged}"
+                                             TextWrapping="Wrap"
+                                             VerticalScrollBarVisibility="Visible" />
                                 </Grid>
                             </GroupBox>
                         </StackPanel>

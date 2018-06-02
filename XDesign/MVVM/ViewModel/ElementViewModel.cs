@@ -21,13 +21,12 @@ namespace XDesign.MVVM.ViewModel
 
         public void AddElement(IElement element)
         {
-            // 设置ZOrder
-            Job.Elements.Add(element);
+            Job.AddElement(element);
         }
 
         public void RemoveElement(IElement element)
         {
-            Job.Elements.Remove(element);
+            Job.RemoveElement(element);
         }
 
     }

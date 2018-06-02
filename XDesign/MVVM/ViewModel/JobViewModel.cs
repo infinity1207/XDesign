@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
@@ -12,10 +13,15 @@ namespace XDesign.MVVM.ViewModel
     {
         public Job Job { get; set; } = new Job();
 
-        JsonSerializerSettings settings = new JsonSerializerSettings
+        readonly JsonSerializerSettings _settings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.All
         };
+
+        public JobViewModel()
+        {
+            LoadDataSource();
+        }
 
         private RelayCommand _saveCommand;
         public RelayCommand SaveCommand
@@ -50,9 +56,11 @@ namespace XDesign.MVVM.ViewModel
                 {
                     _openCommand = new RelayCommand(()=>
                     {
-                        var dlg = new OpenFileDialog();
-                        dlg.DefaultExt = DefaultExt;
-                        dlg.Filter = Filter;
+                        var dlg = new OpenFileDialog
+                        {
+                            DefaultExt = DefaultExt,
+                            Filter = Filter
+                        };
                         var result = dlg.ShowDialog();
                         if (result ?? false)
                         {
@@ -66,7 +74,7 @@ namespace XDesign.MVVM.ViewModel
 
         public void Save(string path)
         {
-            var json = JsonConvert.SerializeObject(Job, settings);
+            var json = JsonConvert.SerializeObject(Job, _settings);
             File.WriteAllText(path, json);
         }
 
@@ -75,7 +83,7 @@ namespace XDesign.MVVM.ViewModel
             using (var sr = File.OpenText(path))
             {
                 var json = sr.ReadToEnd();
-                var job = JsonConvert.DeserializeObject<Job>(json, settings);
+                var job = JsonConvert.DeserializeObject<Job>(json, _settings);
 
                 Job.Elements.Clear();
 
@@ -85,6 +93,12 @@ namespace XDesign.MVVM.ViewModel
                     Messenger.Default.Send(element, "JoinElement");
                 }
             }
+        }
+
+        public void LoadDataSource()
+        {
+            var path = Path.Combine(Environment.CurrentDirectory, @"db.txt");
+            Job.LoadDataSource(path);
         }
     }
 }

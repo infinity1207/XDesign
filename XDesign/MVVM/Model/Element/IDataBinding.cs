@@ -1,9 +1,17 @@
-﻿namespace XDesign.MVVM.Model.Element
+﻿using XDesign.DataSource;
+
+namespace XDesign.MVVM.Model.Element
 {
     public interface IDataBinding
     {
-        string Content { get; set; }
+        string RawContent { get; set; }
 
         string Display { get; }
+
+        IDataSource DataSource { get; set; }
+
+        int DataIndex { get; set; }
+
+        void UpdateData();
     }
 }

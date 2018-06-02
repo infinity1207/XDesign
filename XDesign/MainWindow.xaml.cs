@@ -21,11 +21,11 @@ namespace XDesign
         public MainWindow()
         {
             InitializeComponent();
-            Logger = NLog.LogManager.GetCurrentClassLogger();
+            Logger = ViewModelLocator.Logger;
 
             Logger.Debug("Hello World");
 
-            DataContext = ViewModelLocator.Job;
+            DataContext = ViewModelLocator.JobViewModel;
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)

@@ -16,17 +16,15 @@ namespace XDesign.MVVM.Model.Element
                     element = new TextElement
                     {
                         Bound = bound,
-                        Content = "X-Design"
+                        RawContent = "X-Design"
                     };
                     break;
                 case ElementType.Barcode:
                     element = new BarcodeElement
                     {
                         Bound = bound,
-                        Content = "20091207"
+                        RawContent = "20171111"
                     };
-                    break;
-                default:
                     break;
             }
 

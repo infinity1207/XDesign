@@ -103,6 +103,9 @@
     <Compile Include="Adorners\RubberbandAdorner.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="DataSource\DataSourceException.cs" />
+    <Compile Include="DataSource\FileDataSource.cs" />
+    <Compile Include="DataSource\IDataSource.cs" />
     <Compile Include="DesignerCanvas.cs" />
     <Compile Include="DesignerItem.cs" />
     <Compile Include="MoveThumb.cs" />
@@ -169,6 +172,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Content Include="db.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

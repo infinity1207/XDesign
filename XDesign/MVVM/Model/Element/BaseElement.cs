@@ -1,13 +1,18 @@
-﻿using System.Windows;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NLog;
+using XDesign.DataSource;
 
 namespace XDesign.MVVM.Model.Element
 {
     [JsonObject(MemberSerialization.OptIn)]
     public abstract class BaseElement : ObservableObject, IElement
     {
+        public static Logger Logger { get; set; }
+
         [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
         public ElementType Type { get; set; }
@@ -51,23 +56,54 @@ namespace XDesign.MVVM.Model.Element
     [JsonObject(MemberSerialization.OptIn)]
     public abstract class BaseDataBindingElement : BaseRectangleElement, IDataBinding
     {
-        private string _context;
+        private string _rawContent;
+
         [JsonProperty]
-        public string Content
+        public string RawContent 
         {
-            get => _context;
+            get => _rawContent;
             set
             {
-                if (_context != value)
+                if (_rawContent != value)
                 {
-                    _context = value;
+                    _rawContent = value;
+
                     RaisePropertyChanged();
-                    RaisePropertyChanged("Display");
+                    RaisePropertyChanged(nameof(Display));
                 }
             }
         }
 
-        public virtual string Display => Content;
-    }
 
+        private string _display;
+        public virtual string Display
+        {
+            get
+            {
+                if (DataSource != null)
+                    UpdateData();
+                else
+                    _display = RawContent;
+
+                return _display;
+            }
+        }
+
+        public IDataSource DataSource { get; set; }
+
+        public int DataIndex { get; set; }
+
+        public void UpdateData()
+        {
+            string[] values = DataSource.GetRecord(DataIndex);
+
+            Regex rgx = new Regex(@"\{(.+)?\}");
+
+            _display = RawContent;
+            foreach (Match m in rgx.Matches(RawContent))
+            {
+                ;
+            }
+        }
+    }
 }

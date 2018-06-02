@@ -1,11 +1,10 @@
-﻿using System;
-using System.Management;
+﻿using System.Management;
 
 namespace XDesign
 {
     public class Const
     {
-        private static int _deviceDpi = 0;
+        private static int _deviceDpi;
         public static int DeviceDpi
         {
             get
@@ -16,8 +15,9 @@ namespace XDesign
                     {
                         using (ManagementObjectCollection moc = mc.GetInstances())
                         {
-                            foreach (ManagementObject each in moc)
+                            foreach (var o in moc)
                             {
+                                var each = (ManagementObject) o;
                                 _deviceDpi = int.Parse((each.Properties["PixelsPerXLogicalInch"].Value.ToString()));
                                 break;
                             }
@@ -29,9 +29,6 @@ namespace XDesign
             }
         }
 
-        public static float ScreenScale
-        {
-            get { return DeviceDpi / 96f; }
-        }
+        public static float ScreenScale => DeviceDpi / 96f;
     }
 }

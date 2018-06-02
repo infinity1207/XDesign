@@ -1,7 +1,6 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:s="clr-namespace:XDesign">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:XDesign">
 
     <Style TargetType="{x:Type s:ToolboxItem}">
         <Setter Property="Control.Padding" Value="10" />
@@ -12,16 +11,14 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type s:ToolboxItem}">
                     <Grid>
-                        <Rectangle
-                            Name="Border"
-                            Fill="Transparent"
-                            SnapsToDevicePixels="true"
-                            StrokeDashArray="2"
-                            StrokeThickness="1" />
-                        <ContentPresenter
-                            Margin="{TemplateBinding Padding}"
-                            Content="{TemplateBinding ContentControl.Content}"
-                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                        <Rectangle Name="Border"
+                                   Fill="Transparent"
+                                   SnapsToDevicePixels="true"
+                                   StrokeDashArray="2"
+                                   StrokeThickness="1" />
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          Content="{TemplateBinding ContentControl.Content}"
+                                          SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
@@ -39,12 +36,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Border
-                        Padding="{TemplateBinding Control.Padding}"
-                        Background="{TemplateBinding Panel.Background}"
-                        BorderBrush="{TemplateBinding Border.BorderBrush}"
-                        BorderThickness="{TemplateBinding Border.BorderThickness}"
-                        SnapsToDevicePixels="True">
+                    <Border Padding="{TemplateBinding Control.Padding}"
+                            Background="{TemplateBinding Panel.Background}"
+                            BorderBrush="{TemplateBinding Border.BorderBrush}"
+                            BorderThickness="{TemplateBinding Border.BorderThickness}"
+                            SnapsToDevicePixels="True">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
                         </ScrollViewer>
@@ -55,10 +51,9 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <WrapPanel
-                        Margin="0,5,0,5"
-                        ItemHeight="{Binding Path=DefaultItemSize.Height, RelativeSource={RelativeSource AncestorType=s:Toolbox}}"
-                        ItemWidth="{Binding Path=DefaultItemSize.Width, RelativeSource={RelativeSource AncestorType=s:Toolbox}}" />
+                    <WrapPanel Margin="0,5,0,5"
+                               ItemHeight="{Binding Path=DefaultItemSize.Height, RelativeSource={RelativeSource AncestorType=s:Toolbox}}"
+                               ItemWidth="{Binding Path=DefaultItemSize.Width, RelativeSource={RelativeSource AncestorType=s:Toolbox}}" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>

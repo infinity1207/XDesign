@@ -1,5 +1,6 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
+using NLog;
 
 namespace XDesign.MVVM.ViewModel
 {
@@ -10,8 +11,12 @@ namespace XDesign.MVVM.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<JobViewModel>();
+
+            SimpleIoc.Default.Register(LogManager.GetCurrentClassLogger);
         }
 
-        public static JobViewModel Job => ServiceLocator.Current.GetInstance<JobViewModel>();
+        public static JobViewModel JobViewModel => ServiceLocator.Current.GetInstance<JobViewModel>();
+
+        public static Logger Logger => ServiceLocator.Current.GetInstance<Logger>();
     }
 }
