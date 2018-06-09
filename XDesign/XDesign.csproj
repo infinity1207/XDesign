@@ -103,11 +103,15 @@
     <Compile Include="Adorners\RubberbandAdorner.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="DataGridColumnsBehavior.cs" />
     <Compile Include="DataSource\DataSourceException.cs" />
     <Compile Include="DataSource\FileDataSource.cs" />
     <Compile Include="DataSource\IDataSource.cs" />
     <Compile Include="DesignerCanvas.cs" />
     <Compile Include="DesignerItem.cs" />
+    <Compile Include="DesignZone.xaml.cs">
+      <DependentUpon>DesignZone.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MoveThumb.cs" />
     <Compile Include="MVVM\Model\Element\BarcodeElement.cs" />
     <Compile Include="MVVM\Model\Element\BaseElement.cs" />
@@ -132,6 +136,10 @@
     <Compile Include="Ruler.cs" />
     <Compile Include="Toolbox.cs" />
     <Compile Include="ToolboxItem.cs" />
+    <Page Include="DesignZone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

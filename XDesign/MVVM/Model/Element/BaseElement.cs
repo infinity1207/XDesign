@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
@@ -95,15 +97,26 @@ namespace XDesign.MVVM.Model.Element
 
         public void UpdateData()
         {
-            string[] values = DataSource.GetRecord(DataIndex);
+            var columns = DataSource.GetColumns();
+            var record = DataSource.GetRecord(DataIndex);
 
-            Regex rgx = new Regex(@"\{(.+)?\}");
+            var rgx = new Regex(@"\{(.+)?\}");
 
-            _display = RawContent;
-            foreach (Match m in rgx.Matches(RawContent))
+            var sb = new StringBuilder(RawContent);
+            var matchs = rgx.Matches(RawContent);
+
+            for (var i = matchs.Count - 1; i >= 0; i--)
             {
-                ;
+                var m = matchs[i];
+                var column = m.Groups[1].Value;
+                if (record.ContainsKey(column))
+                {
+                    sb.Remove(m.Index, m.Length);
+                    sb.Insert(m.Index, record[column]);
+                }
             }
+
+            _display = sb.ToString();
         }
     }
 }

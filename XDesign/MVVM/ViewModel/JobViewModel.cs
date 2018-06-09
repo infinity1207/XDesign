@@ -5,7 +5,9 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System.IO;
+using NLog;
 using XDesign.MVVM.Model;
+using XDesign.MVVM.Model.Element;
 
 namespace XDesign.MVVM.ViewModel
 {
@@ -72,6 +74,28 @@ namespace XDesign.MVVM.ViewModel
             }
         }
 
+        private RelayCommand<string> _insertDataFieldCommand;
+        public RelayCommand<string> InsertDataFieldCommand
+        {
+            get
+            {
+                if (_insertDataFieldCommand == null)
+                {
+                    _insertDataFieldCommand = new RelayCommand<string>((field) =>
+                    {
+                        var element = SelectedElement as IDataBinding;
+                        if (element != null)
+                        {
+                            element.RawContent += string.Format("{{{0}}}", field);
+                        }
+                    });
+                }
+
+                return _insertDataFieldCommand;
+            }
+        }
+        
+
         public void Save(string path)
         {
             var json = JsonConvert.SerializeObject(Job, _settings);
@@ -92,6 +116,8 @@ namespace XDesign.MVVM.ViewModel
                     Job.Elements.Add(element);
                     Messenger.Default.Send(element, "JoinElement");
                 }
+
+                LoadDataSource();
             }
         }
 

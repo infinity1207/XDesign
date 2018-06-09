@@ -8,7 +8,7 @@ namespace XDesign.DataSource
 {
     public interface IDataSource
     {
-        int Count { get; set; }
+        int Count { get; }
 
         string ConnectString { get; set; }
 
@@ -16,6 +16,8 @@ namespace XDesign.DataSource
 
         string[] GetColumns();
 
-        string[] GetRecord(int index);
+        string[] GetRow(int index);
+
+        Dictionary<string, string> GetRecord(int index);
     }
 }

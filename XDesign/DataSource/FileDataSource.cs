@@ -5,7 +5,7 @@ namespace XDesign.DataSource
 {
     public class FileDataSource : IDataSource
     {
-        public int Count { get; set; }
+        public int Count { get => _rows.Count; }
 
         public string ConnectString { get; set; }
 
@@ -42,9 +42,28 @@ namespace XDesign.DataSource
             return _columns.ToArray();
         }
 
-        public string[] GetRecord(int index)
+        public string[] GetRow(int index)
         {
             return _rows[index].Split(',');
+        }
+
+        public Dictionary<string, string> GetRecord(int index)
+        {
+            var result = new Dictionary<string, string>();
+
+            var i = 0;
+            var values = _rows[index].Split(',');
+            foreach (var column in _columns)
+            {
+                if (i < values.Length)
+                    result[column] = values[i];
+                else
+                    result[column] = string.Empty;
+
+                i++;
+            }
+
+            return result;
         }
     }
 }
