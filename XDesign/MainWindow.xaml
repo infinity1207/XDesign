@@ -38,7 +38,7 @@
                     <fa:ImageAwesome Icon="Save" />
                 </Button.Content>
             </Button>
-            <Button Width="30">
+            <Button Width="30" Command="{Binding RipCommand}">
                 <Button.Content>
                     <fa:ImageAwesome Icon="Copy" />
                 </Button.Content>

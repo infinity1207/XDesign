@@ -8,6 +8,7 @@ using System.IO;
 using NLog;
 using XDesign.MVVM.Model;
 using XDesign.MVVM.Model.Element;
+using XDesign.Rip;
 
 namespace XDesign.MVVM.ViewModel
 {
@@ -46,6 +47,24 @@ namespace XDesign.MVVM.ViewModel
                 }
 
                 return _saveCommand;
+            }
+        }
+
+        private RelayCommand _ripCommand;
+        public RelayCommand RipCommand
+        {
+            get
+            {
+                if (_ripCommand == null)
+                {
+                    _ripCommand = new RelayCommand(() =>
+                    {
+                        RipHelper ripHelper = new RipHelper();
+                        ripHelper.Perform();
+                    });
+                }
+
+                return _ripCommand;
             }
         }
 

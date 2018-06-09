@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="ResizeDecorator.cs" />
     <Compile Include="ResizeThumb.cs" />
+    <Compile Include="Rip\RipHelper.cs" />
     <Compile Include="Ruler.cs" />
     <Compile Include="Toolbox.cs" />
     <Compile Include="ToolboxItem.cs" />
@@ -208,9 +209,7 @@
     <Resource Include="Images\Paste.png" />
     <Resource Include="Images\Save.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Rip\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Resources\DesignerCanvas.xaml">
       <SubType>Designer</SubType>
