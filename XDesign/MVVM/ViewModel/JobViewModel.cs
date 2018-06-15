@@ -9,11 +9,14 @@ using NLog;
 using XDesign.MVVM.Model;
 using XDesign.MVVM.Model.Element;
 using XDesign.Rip;
+using System.Diagnostics;
 
 namespace XDesign.MVVM.ViewModel
 {
     public partial class JobViewModel : ViewModelBase
     {
+        public Logger Logger => ViewModelLocator.Logger;
+
         public Job Job { get; set; } = new Job();
 
         readonly JsonSerializerSettings _settings = new JsonSerializerSettings
@@ -59,8 +62,13 @@ namespace XDesign.MVVM.ViewModel
                 {
                     _ripCommand = new RelayCommand(() =>
                     {
-                        RipHelper ripHelper = new RipHelper();
+                        RipHelper ripHelper = new RipHelper { Job = Job};
+                        Stopwatch sw = new Stopwatch();
+                        sw.Start();
                         ripHelper.Perform();
+                        sw.Stop();
+
+                        Logger?.Debug($"Rip one page consume: {sw.Elapsed}");
                     });
                 }
 

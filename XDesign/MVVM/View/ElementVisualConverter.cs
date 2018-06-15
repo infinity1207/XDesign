@@ -9,6 +9,8 @@ using TECIT.TBarCode;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using XDesign.MVVM.Model.Element;
+using Neodynamic.SDK.Barcode;
+using System.Drawing;
 
 namespace XDesign.MVVM.View
 {
@@ -74,12 +76,23 @@ namespace XDesign.MVVM.View
             var element = values[0] as BarcodeElement;
             Debug.Assert(element != null);
 
+            BarcodeProfessional bp = ElementHelper.CreateBarcodeProfessional(element);
+            using (var bitmap = bp.GetBarcodeImage(96, 96) as Bitmap)
+            {
+                return Bitmap2BitmapSource(bitmap);
+            }
+
+            // return DrawTBarcode(element);
+        }
+
+        BitmapSource DrawTBarcode(BarcodeElement element)
+        {
             Barcode tbarcode = new Barcode();
             var w = System.Convert.ToInt32(element.Bound.Width * Const.ScreenScale);
             var h = System.Convert.ToInt32(element.Bound.Height * Const.ScreenScale);
             tbarcode.BoundingRectangle = new System.Drawing.Rectangle(0, 0, w, h);
             tbarcode.Data = element.Display;
-            tbarcode.BarcodeType = element.BarcodeType;
+            //tbarcode.BarcodeType = element.BarcodeType;
 
             using (var bitmap = tbarcode.DrawBitmap())
             {

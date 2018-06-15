@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:XDesign"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         Title="MainWindow"
         Width="1440"
         Height="900"
@@ -123,11 +124,24 @@
                             <GroupBox Header="Text">
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="*" />
                                         <RowDefinition Height="5" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <TextBox Grid.Row="0"
+
+                                    <ComboBox x:Name="FontNames"
+                                              Grid.Row="0"
+                                              SelectedItem="{Binding SelectedElement.FontName, Mode=TwoWay}" />
+
+                                    <ComboBox x:Name="FontSizes"
+                                              Grid.Row="2"
+                                              SelectedItem="{Binding SelectedElement.FontSize, Mode=TwoWay}" />
+
+                                    <TextBox Grid.Row="4"
                                              Height="120"
                                              AcceptsReturn="True"
                                              IsEnabled="{Binding SelectedElement, Converter={StaticResource ContentIsEnabledConverter}}"
@@ -135,7 +149,7 @@
                                              TextWrapping="Wrap"
                                              VerticalScrollBarVisibility="Visible" />
 
-                                    <Button Grid.Row="2"
+                                    <Button Grid.Row="6"
                                             HorizontalAlignment="Right"
                                             Content="Insert...">
                                         <Button.ContextMenu>
@@ -158,6 +172,7 @@
                     <TabItem Header="Barcode">
                         <StackPanel>
                             <ComboBox x:Name="BarcodeTypes" SelectedItem="{Binding SelectedElement.BarcodeType}" />
+                            <xctk:DoubleUpDown Increment="0.01" Value="{Binding SelectedElement.ModuleWidth, Mode=TwoWay}" />
                         </StackPanel>
                     </TabItem>
                 </TabControl>

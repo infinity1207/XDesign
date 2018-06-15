@@ -1,20 +1,20 @@
-﻿<UserControl
-    x:Class="XDesign.MVVM.View.ElementVisual.TextVisual"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:XDesign.MVVM.View.ElementVisual"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="{Binding Bound.Width}"
-    Height="{Binding Bound.Height}"
-    d:DesignHeight="100"
-    d:DesignWidth="200"
-    IsHitTestVisible="False"
-    mc:Ignorable="d">
+﻿<UserControl x:Class="XDesign.MVVM.View.ElementVisual.TextVisual"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:XDesign.MVVM.View.ElementVisual"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Width="{Binding Bound.Width}"
+             Height="{Binding Bound.Height}"
+             d:DesignHeight="100"
+             d:DesignWidth="200"
+             IsHitTestVisible="False"
+             mc:Ignorable="d">
     <Grid>
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="{Binding Display}" />
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontFamily="{Binding FontName}"
+                   FontSize="{Binding FontSize}"
+                   Text="{Binding Display}" />
     </Grid>
 </UserControl>

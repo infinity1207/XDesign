@@ -9,6 +9,7 @@ using TECIT.TBarCode;
 using XDesign.DataSource;
 using XDesign.MVVM.Model.Element;
 using XDesign.MVVM.ViewModel;
+using Neodynamic.SDK.Barcode;
 
 namespace XDesign
 {
@@ -31,12 +32,19 @@ namespace XDesign
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            BarcodeTypes.ItemsSource = new List<BarcodeType>
+            BarcodeTypes.ItemsSource = new List<Symbology>
             {
-                BarcodeType.Code39,
-                BarcodeType.Code128,
-                BarcodeType.DataMatrix,
-                BarcodeType.QRCode
+                Symbology.Code39,
+                Symbology.Code128,
+                Symbology.DataMatrix,
+                Symbology.QRCode
+            };
+
+            FontNames.ItemsSource = Common.Utility.GetSystemFonts();
+
+            FontSizes.ItemsSource = new List<float>
+            {
+                4,5,6,7,8,9,10,12,14,16,18,20,24,28,32,40,48,56,64,72
             };
         }
     }

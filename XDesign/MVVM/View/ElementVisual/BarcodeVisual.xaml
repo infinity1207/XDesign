@@ -20,6 +20,7 @@
                     <Binding Path="." />
                     <Binding Path="Bound" />
                     <Binding Path="BarcodeType" />
+                    <Binding Path="ModuleWidth" />
                     <Binding Path="RawContent" />
                 </MultiBinding>
             </Image.Source>

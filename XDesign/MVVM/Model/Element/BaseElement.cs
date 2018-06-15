@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Media;
 using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -33,6 +34,8 @@ namespace XDesign.MVVM.Model.Element
                 }
             }
         }
+
+        public abstract void Draw(DrawingContext dc);
     }
 
     [JsonObject(MemberSerialization.OptIn)]
@@ -52,6 +55,11 @@ namespace XDesign.MVVM.Model.Element
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        public override void Draw(DrawingContext dc)
+        {
+            ;
         }
     }
 
@@ -76,6 +84,34 @@ namespace XDesign.MVVM.Model.Element
             }
         }
 
+        private string _fontName = "宋体";
+        [JsonProperty]
+        public string FontName {
+            get => _fontName;
+            set
+            {
+                if (_fontName != value)
+                {
+                    _fontName = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private float _fontSize = 9f;
+        [JsonProperty]
+        public float FontSize
+        {
+            get => _fontSize;
+            set
+            {
+                if (_fontSize != value)
+                {
+                    _fontSize = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
         private string _display;
         public virtual string Display

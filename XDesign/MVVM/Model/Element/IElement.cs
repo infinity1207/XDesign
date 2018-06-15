@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Windows.Media;
 
 namespace XDesign.MVVM.Model.Element
 {
@@ -14,5 +15,7 @@ namespace XDesign.MVVM.Model.Element
         ElementType Type { get; set; }
 
         int ZOrder { get; set; }
+
+        void Draw(DrawingContext dc);
     }
 }
