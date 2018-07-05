@@ -1,0 +1,9 @@
+[db]
+FileType=VARYING
+UseHeaderRow=1
+StartAtRow=2
+Separator=,
+Delimiter="
+FileEncoding=AUTO
+Field1=name,,12,,0
+Field2=age,,1,,12
