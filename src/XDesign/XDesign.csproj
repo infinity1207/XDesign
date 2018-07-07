@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="ResizeDecorator.cs" />
     <Compile Include="ResizeThumb.cs" />
+    <Compile Include="Rip\RipElement.cs" />
     <Compile Include="Rip\RipHelper.cs" />
     <Compile Include="Ruler.cs" />
     <Compile Include="Toolbox.cs" />

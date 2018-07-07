@@ -46,7 +46,13 @@ namespace XDesign
                 4,5,6,7,8,9,10,12,14,16,18,20,24,28,32,40,48,56,64,72
             };
 
-            ViewModelLocator.JobViewModel.Load(@"d:\test.xdf");
+            try
+            {
+                ViewModelLocator.JobViewModel.Load(@"d:\test.xdf");
+            }
+            catch
+            {
+            }
         }
     }
 

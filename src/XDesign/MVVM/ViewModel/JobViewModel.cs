@@ -63,12 +63,7 @@ namespace XDesign.MVVM.ViewModel
                     _ripCommand = new RelayCommand(() =>
                     {
                         RipHelper ripHelper = new RipHelper { Job = Job};
-                        Stopwatch sw = new Stopwatch();
-                        sw.Start();
                         ripHelper.Perform();
-                        sw.Stop();
-
-                        Logger?.Debug($"Rip one page consume: {sw.Elapsed}");
                     });
                 }
 
